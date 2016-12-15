@@ -22,11 +22,11 @@
 \maketitle
 
 \section{Introduction}
-Donald E. Knuth discussed Satisfiability (7.2.2.2.) of 3CNF in Volume 4B of \emph{The Art of Computer Programming}. We tried to analyze these algorithms using the notion of pruning of search tree.
+Donald E. Knuth discussed Satisfiability (7.2.2.2.) of CNF in Volume 4B of \emph{The Art of Computer Programming}. We tried to analyze these algorithms using the notion of pruning of search tree.
 
 \section{SAT solving algorithms}
 
-Typically, these algorithms are basically a family of algorithms to search a set of literals in a search space that satisfies the 3CNF. We can consider it as a tree such that it satisfies these following conditions.
+Typically, these algorithms are basically a family of algorithms to search a set of literals in a search space that satisfies the CNF. We can consider it as a tree such that it satisfies these following conditions.
 
 \begin{itemize}
 \item $E(u, v)$ if $u \subset v$ and $|u \setminus v| = 1$
@@ -37,7 +37,7 @@ Then root node is the empty assignment and leaves are full assignments. Rest of 
 
 \subsection{Backtrack}
 
-This is the naive approach to solve 3CNF SAT problems. It starts from the root node i.e. empty assignment and try to decide next undecided literal with positive value. It some assignment makes the formula unsatisfied, it will try the negative value. If it is still unsatisfied, it will backtrack to previous literal try to decide its next choice.
+This is the naive approach to solve CNF SAT problems. It starts from the root node i.e. empty assignment and try to decide next undecided literal with positive value. It some assignment makes the formula unsatisfied, it will try the negative value. If it is still unsatisfied, it will backtrack to previous literal try to decide its next choice.
 
 It continues to do so until if reaches the root node i.e. the formula is UNSAT else a partial assignment that satisfies the formula.
 
@@ -55,7 +55,7 @@ But the advantage of this algorithm is, it prunes more search space than first t
 
 \subsection{Clause learning}
 
-If $C_1$ and $C_2$ are two clauses in 3CNF and $C$ is their resolvant, clause learning algorithm uses this resolvant to prune the search tree. DPLL used only forced decisions on one single literal. But clause learning actually uses the forced relations (newly formed resolvants) on multiple literals to prune the search space.
+If $C_1$ and $C_2$ are two clauses in CNF and $C$ is their resolvant, clause learning algorithm uses this resolvant to prune the search tree. DPLL used only forced decisions on one single literal. But clause learning actually uses the forced relations (newly formed resolvants) on multiple literals to prune the search space.
 
 \subsection{Random walk}
 
@@ -69,7 +69,7 @@ Knuth discussed, doing random walk once may not give the assignment (because of 
 
 The conditions are same as the original $N$-queen problem such that place $N$ queens in $N \times N$ chess board such that no two queens are in attacking position with an extra condition such that there are no \emph{skewed diagonals} such that no three queens are in a straight line.
 
-We will use this problem for different $N$ as our 3CNF benchmark.
+We will use this problem for different $N$ as our CNF benchmark.
 
 \subsection{Running times}
 
@@ -86,7 +86,7 @@ It is supposed to be faster than previous two, but finding forced literals is co
 This is very slow since finding the right literal should use some right heuristic. Otherwise it will go on creating new unnecessary resolvants which does not help pruning the tree, yet we have to account all those new clauses.
 
 \subparagraph{Random walk}
-This algorithm runs really fast with respect other algorithms for SAT 3CNFs. But it of course, it can not report UNSAT, so for UNSAT 3CNF it will go through all the loops.
+This algorithm runs really fast with respect other algorithms for SAT CNFs. But it of course, it can not report UNSAT, so for UNSAT CNF it will go through all the loops.
 
 \vspace{1em}
 
