@@ -4,11 +4,11 @@ Algorithms for SAT
 This is a small academic project for my course work.
 
 I have implemented the following SAT solving algorithms from D. E. Knuth's book.
-    * Backtrack
-    * Backtrack using watchee
-    * Cyclic DPLL
-    * Clause learning
-    * Random walk
+* Backtrack
+* Backtrack using watchee
+* Cyclic DPLL
+* Clause learning
+* Random walk
 
 To run them, just compile,
 
@@ -20,11 +20,11 @@ Then execute it,
 
 INPUTCNF is the CNF file and solution will be flushed to OUTPUTFILE. No value means `stdin` and `stdout` respectively.
 S is 
-    + `b` for backtrack
-    + `w` for BT with watchee
-    + `d` for cyclic DPLL
-    + `c` for clause learning
-    + `r` for random walk
++ `b` for backtrack
++ `w` for BT with watchee
++ `d` for cyclic DPLL
++ `c` for clause learning
++ `r` for random walk
 
 To generate CNF of extended N-queen problem, complie and run,
 
