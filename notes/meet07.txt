@@ -1,0 +1,41 @@
+                               Algorithms for SAT
+                              2016-10-13, Thursday
+
+Completed reading backtracking algorithms.
+
+Random satisfiability.
+
+1. q_m = Pr(m distinct random clauses of k-SAT on n variables are SAT)
+
+2. T_m = number of ways to make m distinct random clauses of k-SAT on n variables to be SAT.
+    - mean, variance
+
+3. Pr(T_m = 1)
+
+4. P = number of distinct clauses of k-SAT to become UNSAT
+    - P is a random variable.
+    - Pr(P = m) = p_m = q_{m-1} - q_m
+    - mean and variances for P
+
+5. S_{k, n} = E[P_{k, n}]
+
+6. q'_m = Pr(m random clauses of k-SAT are SAT)
+    - clauses can repeat
+    - q_m <= q'_m
+
+7. P' = number of clauses of k-SAT to become UNSAT
+    - P' is random variable
+    - Pr(P = m) = p'_m = q'_{m-1} = q'_m
+    - mean and variances for P
+
+8. S_k(m, n) = Pr(m random clauses of k-SAT are SAT)
+
+9. Satisfiability thresholds, Phase transition
+    - a_k = lim_{n -> infty} S_{k, n}/n
+    - for 3SAT a_3 ~= 4.27
+
+10. Analysis for 2SAT
+    - a_2 = 1
+
+---
+2016-10-19

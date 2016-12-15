@@ -1,0 +1,18 @@
+			       Algorithms for SAT
+			     2016-11-09, Wednesday
+
+1. Encoding constraints into clauses.
+	- encode constraints for real life problem to CNF
+	- different encodings works well for different problems
+	- different algorithms works well with different encodings
+
+2. Unit propagation and forcing.
+
+3. symmetry breaking
+	- using constrainsts force satisfying assignment to be unique.
+	- prunes many unnecessary symmetric branches
+
+
+
+---
+2016-11-09

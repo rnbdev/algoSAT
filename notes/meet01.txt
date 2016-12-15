@@ -1,0 +1,57 @@
+                               Algorithms for SAT
+                             2016-08-31, Wednesday 
+
+1. Linear Solver
+    a) takes a formula F and convert it to an `equivalent` DAG F' = t(F) where
+       the nodes are only `and` and `not` and leaves are propositions -
+        t(p) = p
+        t(F1 and F2) = t(F1) and t(F2)
+        t(F1 or F2) = not ( not t(F1) and not t(F2))
+        t(not F1) = not t(F1)
+    b) if F is satisfiable, root node is TRUE for that satisfying assignment.
+    c) so we will start `propagating` values to other nodes using these rules -
+        *) `not` node and its child must have dual assignments.
+        *) TRUE at `and` node <=> TRUE at both its child nodes
+        *) FALSE at one child node => FALSE at parent `and` node.
+        *) FALSE at `and` node and TRUE at one of its child node => FALSE at
+           other child node.
+    d) if one node receives different assignments, reports UNSAT.
+    e) continue `propagating/deciding` assignments till all leaves has
+       assignments or no further changes are possible.
+
+    eg. p and (not p or q)  - Linear Solver works
+        not (not (p or not p) and q)  - Linear Solver fails
+
+    - runtime complexity
+    runs in linear in the size of the DAG t(F) which is linear in size of
+    original F.
+
+
+2. Cubic Solver
+    a) improvement to Linear Solver. wins(somewhat) where Linear Solver fails.
+    b) if Linear Solver is stuck, take an unassigned node -
+         i) temporary assign it TRUE and propagate that assignment.
+        ii) temporary assign it FALSE and propagate that assignment.
+    c) if some of the nodes received same assignment in both temporary marking,
+make those assignments permanent for those nodes.
+    d) propagate again with newly permanent assigned nodes.
+    e) continue till all leaves has assignments or no new changes are possible.
+
+    eg. not (not (p or not p) and q)  - can permanently assign value for q.
+        (p or q)  - fails
+
+    - runtime complexity
+    runs in cubic in the size of the DAG t(F).
+         i) might have to temporary propagate values from all nodes to permanent
+           assign value to one node (n*n)
+        ii) once a node receives permanent assignment, we have to start afresh
+            with new permanent marking. ((n*n)*n)
+
+    - improvement
+     i) while propagating temporary values if contradiction occurs, permanently
+assign dual of temporary assignment to the node immediately.
+    ii) while propagating temporary values if all of unassigned nodes receives
+assignments without contradiction, report it as a SAT assignment.
+
+---
+2016-09-04

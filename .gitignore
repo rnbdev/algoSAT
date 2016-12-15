@@ -4,5 +4,8 @@
 # unignore all with extensions
 !*.*
 
+# unignore all directories
+!*/
+
 *.cnf
 *.sol

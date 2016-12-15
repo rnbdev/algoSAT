@@ -1,0 +1,22 @@
+                               Algorithms for SAT
+			      2016-09-20, Tuesday
+
+1. Satisfiability using backtracking.
+   Guesses an incremental solution and tries to satisfy all clauses.
+   If formula becomes unsat for a solution, it backtracks and tries for new 
+   solution till no other new solution is available.
+
+   * implemented this algorithm.
+
+2. `m` increase lexicographically.
+   because, m_i's are increasing. their lifetimes are one of the followings -
+   000 -> 011 ; 001 -> 010 ; 100 ;101
+
+3. Read satisfiability using watchee.
+
+---
+Parity Games, Oliver Friedmann
+15 sessions, till page 60
+
+---
+2016-09-29

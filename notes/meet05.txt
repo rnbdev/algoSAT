@@ -1,0 +1,18 @@
+                               Algorithms for SAT
+                               2016-09-30, Friday
+
+1. Backtracking using watchee.
+   If a formula is satisfiable, each clause must have a positive literal. We
+   will call it as `watchee` for each clause. Note a literal is watchee, its
+   dual must not be a watchee.   
+   
+   Roughly the algo is, start with some arbitary watchee for each clause. They
+   need not to be consistent. Actually the algorithm tries to make them
+   consistent.
+
+   * implemented this algorithm.
+
+2. Read satisfiability with cyclic DPLL.
+
+---
+2016-10-07

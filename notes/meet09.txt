@@ -1,0 +1,22 @@
+			       Algorithms for SAT
+			      2016-10-27, Thursday
+
+Randomized methods
+
+1. Monte Carlo algorithm
+	- guess an assignment
+	- if all clauses are satisfiable, exit successfully.
+	- else, choose a literal randomly, and make it to be true.
+	- do this, till maximum N iteration, then exit unsuccessfully.
+
+2. WalkSAT
+	- modified Monte Carlo
+	- guess an assignment
+	- if all clauses are satisfiable, exit successfully
+	- else, if least cost is zero or with some probability,
+		- choose a random lowest cost literal and flip it
+		- else choose any random literal and flip it
+	- do this, till maximum N iteration, then exit unsuccessfully.
+
+---
+2016-11-09

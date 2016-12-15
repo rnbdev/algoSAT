@@ -1,0 +1,37 @@
+                               Algorithms for SAT
+                               2016-09-09, Friday
+
+Book: The Art of Computer Programming, Volume 4, Pre-fascicle 6A, Satisfiability
+      Donald E. Knuth
+
+
+1. CNF SAT <=> can switch signs to remove all-negative clauses. (page 3)
+   
+   => If SAT, there is a satisfying assignment. Switch p if (not p) is TRUE in
+   the assignment.
+
+   <= After switch signs, before and after formula is equi-satisfiable. If there
+   is no all-negative clause, then we can take one positive literals from each
+   clause and assign it to TRUE and that will make each clauses TRUE.
+
+2. R = {123', 234', 341, 41'2, 1'2'3, 2'3'4, 3'4'1', 4'12'} and R' = R \ {4'12'}
+       {12'3', 2'34', 341, 41'2', 1'23, 23'4, 3'4'1', 4'12}
+   R is not satisfiable but R' is with {4,1',2}. WHY? (page 4)
+
+3. Do exercise 10, 26 of the book.
+
+4. Read factoring integers, fault testing.
+
+   Factoring integers: Construct satisfying formula for x * y = z where only z
+   is known. Feed it to SAT solvers to find satisfying assignments for x and y.
+
+   Fault testing: Generates test data to detect `single-stuck-at' faults.
+   Constructs a satisfying formula which encodes correct circuit and faulty
+   circuit both. Their inputs should be same but outputs must be different.
+   Also, there are some faults which are impossible to detect using this output
+   matching technique.
+
+next meet: learning boolean functions.
+
+---
+2016-09-20

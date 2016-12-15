@@ -1,0 +1,16 @@
+			       Algorithms for SAT
+			      2016-10-20, Thursday
+
+SAT solving using resolution.
+
+1. Guess and decide all forced decisions.
+2. If conflicts, add resolved clause and backtrack the original guess.
+3. Repeat until no more guessing.
+
+Key idea
+	Resolved clauses are helpful to prune the `search tree'. But it would
+add many many resolved clauses. So adding small number of small sized resolved
+clauses is the main trick.
+
+---
+2016-11-09

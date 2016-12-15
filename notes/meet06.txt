@@ -1,0 +1,9 @@
+                               Algorithms for SAT
+                               2016-10-07, Friday
+
+
+1. Backtracking using unit clauses.
+   Maintaining a `next` list to prioritize unit clause literals.
+
+---
+2016-10-08

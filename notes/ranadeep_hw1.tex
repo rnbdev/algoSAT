@@ -1,0 +1,77 @@
+\documentclass[twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+
+\usepackage[a4paper, total={7in, 9in}, hmarginratio=1:1]{geometry}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\textbf{Algorithms for SAT}}
+\fancyhead[CO]{\textbf{Ranadeep Biswas}}
+\fancyhead[RO]{\textbf{Homework 1}}
+
+\newcommand{\ie}{\emph{i.e.}\ }
+\newcommand{\project}{{\downarrow}}
+
+
+\begin{document}
+\begin{enumerate}
+    \item \textit{A CNF formula is satisfiable $\Leftrightarrow$ it can be made all-negative clause free by switching signs of the variables.}
+
+          $(\Rightarrow)$ If a CNF formula is satisfiable, we have a satisfying assignment. We switch the sign of those variables which are assigned \texttt{FALSE} by that assignment. Now each clause has a literal which is assigned to \texttt{TRUE}. If that is a positive literal then that clause is not a all-negative clause both in original and new formula. Else that was a negative clause, it is switched in the new formula hence that clause has a positive literal in the new formula. Hence the new formula is all-negative clause free.
+
+          $(\Leftarrow)$ Suppose a CNF formula can be made all-negative clause free by switching signs. Then in the new formula, each clause has at least one positive variable. We will assign \texttt{TRUE} to those variables, and that would make the formula satisfiable. Now, take that assignment, and change the assigned value to \texttt{FALSE} for those variables whose signs are switched. That would be a satisfying assignment for original formula because each clause in new formula has a \texttt{TRUE} literal. If that was a positive variable in original clause, that is \texttt{TRUE} in original clause too. Else if that was a negative variable in original clause, it is switched in the new formula. So assigning to \texttt{FALSE} would make it \texttt{TRUE} in the original clause.
+
+    \item \textit{Let $R = \{12\bar3, 23\bar4, 341, 4\bar12, \bar1\bar23, \bar2\bar34, \bar3\bar4\bar1, \bar41\bar2\}$ and $R' = R \setminus \{\bar41\bar2\}$. Show that $R$ is unsatisfiable but $\{4, \bar1, 2\}$ makes $R'$ satisfiable.}
+          \begin{enumerate}
+            \item
+                  \begin{align*}
+                    R(\bar1, 2, 3, 4) & = R(1, 3, 2, 4) \\
+                    R(1, \bar2, 3, 4) & = R(1, 2, 4, 3) \\
+                    R(1, 2, \bar3, 4) & = R(1, 4, 3, 2) \\
+                    R(1, 2, 3, \bar4) & = R(2, 1, 3, 4)
+                  \end{align*}
+                  So no matter how I switch the variables, the new set of clauses is a new instance of $R$ where the switched variable is not switched and other variables are permuted. So there is no way to make it all-negative clause free. Hence $R$ is not satisfiable.
+
+            \item $R = R' \cup \{\bar41\bar2\}$ is unsatisfiable. Hence $R' \Rightarrow \neg\{\bar41\bar2\} = \{4, \bar1, 2\}$. Clearly $\{4, \bar1, 2\} \Rightarrow R'$. So, that is a satisfying assignment.
+          \end{enumerate}
+
+    \item \textbf{Exercise 10.} \textit{Show that every satisfiability problem with $m$ clauses and $n$ variables can be transformed into an equivalent monotonic problem with $m+n$ clauses and $2n$ variables, in which the first $m$ clauses have only negative literals, and the last $n$ clauses are binary with two positive literals.}
+
+          Suppose $F$ is a satisfiability problem with variables $\{1, \ldots, n\}$. We add additional $\{1', \ldots, n'\}$ variables. By intuition, $v'$ and $v$ has dual of same variable.
+
+          Now we create a new formula $F'$ replacing each occurrence of $v$ with $\bar v'$ in $F$ for $v \in \{1, \ldots, n\}$.
+
+          Then we add $n$ more clauses in $F'$ $\{v', v\}$ for $v \in \{1, \ldots, n\}$.
+
+          Then $F'$ is a satisfiability problem with $m+n$ clauses and $2n$ variables. Now I will show, $F$ and $F'$ are equi-satisfiable.
+
+          If $F$ has a satisfying assignment $\sigma$. Then we extend $\sigma$ to a satisfying assignment $\sigma'$ for $F'$ such that $\sigma'(v) = \sigma(v)$ and $\sigma'(v') = \overline{\sigma(v)}$ for $v \in \{1, \ldots, n\}$.
+
+          Now suppose $F'$ has a satisfying assignment $\sigma'$. We create a satisfying assignment $\sigma = \sigma' \project_{1\ldots n}$ for $F$. This will correct because, if $\sigma'(v) = \overline{\sigma'(v')}$, then the dual nature is consistent. But if $\sigma'(v) = \sigma'(v')$ then both are \texttt{TRUE} since they both can not be \texttt{FALSE} ($\{v, v'\}$ is a clause in $F'$), then $\bar v$ and $\bar v'$ were \texttt{FALSE} in the first $m$ clauses of $F'$. So $m$ clauses are satisfied without $v$ and $v'$'s contribution. So I can assign any value to $v$ in original $F$.
+
+          \textbf{Exercise 26.} \textit{Prove that Sinz's clauses in the below enforce the cardinality constraint $x_1 + \ldots + x_n \leq r$. Hint: Show that they imply $s^k_j = 1$ whenever $x_1 + \ldots + x_{j+k-1} \geq k$.}
+          \begin{enumerate}
+            \item $(\bar s^k_j \vee s^k_{j+1})$ for $1 \leq j < (n-r)$ and $1 \leq k \leq r$
+            \item $(\bar x_{j+k} \vee \bar s^k_j \vee s^{k+1}_j)$ for $1 \leq j < (n-r)$ and $0 \leq k \leq r$ where $\bar s^k_j$ is omitted when $k = 0$ and $s^{k+1}_j$ is omitted when $k = r$.
+          \end{enumerate}
+          Suppose $x_1 + \ldots + x_{j+k-1} \geq k$ \ie there are at least $k$ many $i < j+k$ such that $x_i = 1$. Then I will show $s^k_j$ is \texttt{TRUE}.
+
+          I will prove by induction.
+
+          Base case: If $k = 1$, then there is at least one $x_i = 1$. (b) says $(\bar x_{i} \vee s^1_i)$. So $s^1_i$ is \texttt{TRUE}. Then I can apply (a) finite times and have $s^1_j$ to be \texttt{TRUE} (since $i < j+1$).
+
+          Inductive step: If $x_1 + \ldots + x_{j+k-1} \geq k$. Suppose $x_l = 1$ such that there is no $x_i = 1$ with $l < i < j+k$. Then, $x_1 + \ldots x_{l-1} \geq (k-1)$. By induction hypothesis, $s^{k-1}_{l-k+1}$ is \texttt{TRUE}. Then by applying (b) on $(\bar x_l \vee \bar s^{k-1}_{l-k+1} \vee s^{k}_{l-k+1})$ we have $s^{k}_{l-k+1}$ to be \texttt{TRUE}. Then applying (a) finite times we have $s^k_j$ to be \texttt{TRUE}.
+
+          So whenever $x_1 + \ldots + x_{j+k-1} \geq k$, $s^k_j$ is \texttt{TRUE}.
+
+          Now, if $x_{r+j} = 0$ for $1 \leq j \leq (n-r)$ then of course $x_1 + \ldots + x_n \leq r$. Else there exists $x_{l+r} = 1$ such that there is no $x_{i+r} = 1$ with $l < i \leq (n-r)$ then (b) says $(x_{l+r} \vee \bar s^r_{l})$ or $x_{l+r}$ implies $x_1 + \ldots + x_{l+r-1} \not\geq r$ or $x_1 + \ldots + x_{l+r} \leq r$. Since $x_{i+r} = 0$ with $l < i \leq (n-r)$, that inequality becomes $x_1 + \ldots + x_n \leq r$.
+
+          Hence every satisfying assignment for Sinz's clauses ensures $x_1 + \ldots + x_n \leq r$.
+\end{enumerate}
+\end{document}

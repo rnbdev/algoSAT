@@ -1,0 +1,34 @@
+                               Algorithms for SAT
+                               2016-09-09, Friday
+
+1. Given polynomial f(x1, x2, ... , xn) <= r, construct a CNF for it. (Think)
+
+2. Smallest formula(length or no. of variables) for x_1 + x_2 + ... + xn <= r.
+(Think)
+
+3. Read form `Learning formula' before `Backtracking'.
+
+   Learning a boolean function: Have a record of input and output. Have to
+   determine the function. Construct a satisfying formula for DNF that may
+   capture the function.
+
+   Bounded model checking: Consider a transition system. Constructs initial
+   states and transition relation in a satisfying formula. Checks it it reaches
+   any state with some property.
+
+    - Game of Life, John Conway: If any initial configuration reaches a
+      particular configuration.
+
+      Also, JS implementation of Conway's Game of Life by Ranadeep at 
+        http://codepen.io/ranadeep/full/gwwjjP/
+   
+    - Applications to mutual exclusions: Detecting mutual exclusion, progress,
+      starvation, deadlock using SAT solver.
+
+   Digital tomography: Consider an image with binary pixel value. Row, column,
+   diagonal sums are given. It is possible to reconstruct the original image?
+   Generally, no. eg. Cheshire cat. The solutions are nowhere similar to the
+   original image.
+
+---
+2016-09-20
