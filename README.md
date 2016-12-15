@@ -19,7 +19,8 @@ Then execute it,
     ./test S [INPUTCNF [OUTPUTFILE]]
 
 INPUTCNF is the CNF file and solution will be flushed to OUTPUTFILE. No value means `stdin` and `stdout` respectively.
-S is 
+
+`S` is 
 + `b` for backtrack
 + `w` for BT with watchee
 + `d` for cyclic DPLL
