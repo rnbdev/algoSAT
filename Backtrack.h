@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <cstring>
 
-#include "../ds/LinkedList.h"
+#include "ds/LinkedList.h"
 
 typedef unsigned int u_int;
 

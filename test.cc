@@ -3,6 +3,7 @@
 #include "SATByCDPLL.h"
 #include "SATByCL.h"
 #include "SATByRandomWalk.h"
+#include "SATByGA.h"
 
 #include <cassert>
 
@@ -56,6 +57,13 @@ int main(int argc, char * argv[]){
             b.readDimacs(fp1);
             b.init();
             b.solve(1000, 100);
+            b.printDimacs(fp2);
+    }else if(argv[1][0] == 'g'){
+            printf("-------- genetic algo --------\n");
+            SATByGA b(200);
+            b.readDimacs(fp1);
+            b.init();
+            b.solve(10000);
             b.printDimacs(fp2);
     }else{
         printf("invalid choice\n");
